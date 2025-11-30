@@ -1,0 +1,103 @@
+{#
+/**
+ * @file
+ * Front page template that prints component from the theme's
+ * components folder following Drupal Twig conventions.
+ *
+ */
+#}
+
+{# Attach component library if you maintain one for the hero (optional). #}
+{{ attach_library('portfolio/hero') }}
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo">
+      <a href="{{ path('<front>') }}" rel="home" title="{{ 'Home'|t }}">{{ site_name }}</a>
+    </div>
+
+    <nav class="primary-nav" id="primary-nav">
+      {{ page.primary_menu }}
+    </nav>
+  {# Header #}
+  <div class="header-cta">
+    {% if node.field_resume is defined and not node.field_resume.isEmpty() %}
+      {% set file = node.field_resume.entity %}
+      {% set resume_url = file_url(file.getFileUri()) %}
+
+      {# Trigger button #}
+      <button class="btn-resume" id="open-resume" aria-haspopup="dialog" aria-controls="pdfModal">
+        Resume
+      </button>
+
+      {# Modal (hidden by default) #}
+      <div id="pdfModal" class="pdf-modal" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle" hidden>
+        <div class="pdf-modal__backdrop" data-close="true"></div>
+
+        <div class="pdf-modal__panel" role="document" aria-describedby="pdfModalDesc">
+          <button class="pdf-modal__close" id="close-resume" aria-label="Close resume preview">✖</button>
+         <div class="pdf-modal__content">
+            <iframe src="{{ resume_url }}" title="Resume preview" width="100%" height="100%" frameborder="0" aria-label="Resume PDF preview">
+              Your browser does not support inline PDFs. <a href="{{ resume_url }}">Download the PDF</a>.
+            </iframe>
+          </div>
+        </div>
+      </div>
+
+    {% else %}
+    {# Fallback if no file uploaded (optional) #}
+    <button class="btn-resume disabled" disabled>Resume (not available)</button>
+  {% endif %}
+</div>
+  </div>
+</header>
+
+{# Hero Section #}
+<section id="hero" class="hero section">
+    {{ hero_component }}
+</section>
+
+{# Skills Section #}
+<section id="skills" class="section">
+    {{ myskills }}
+</section>
+
+{# My Experience Section #}
+<section id="experience" class="section section-dark">
+    {{ myexperience }}
+</section>
+
+{# About Me Section #}
+<section id="about" class="section">
+    {{ aboutme }}
+</section>
+
+{# My Projects Section #}
+<section id="project" class="section section-dark">
+    {{ myprojects }}
+</section>
+{# Contact Me Section #}
+<section id="contactme" class="section">
+  <div class="container contact-grid">
+    <div class="contact-form">
+      {{ drupal_entity('webform', 'contact_me') }}
+    </div>
+    <aside class="contact-details">
+      <h2>Let’s <i>talk</i> for <br/><strong>Something special</strong></h2>
+      <p>umedsingh.webdev@gmail.com</p>
+      <p>+91-8930431158</p>
+    </aside>
+  </div>
+</section>
+
+{# Footer Section #}
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <p style="font-weight: 800; font-size: 20px;">{{ site_name }}</p>
+      <p>© {{ "now"|date("Y") }} All rights reserved. <br/>Designed and Developed by <a href="#" target="_blank" rel="noopener">Umed Singh</a></p>
+    </div>
+  </div>
+</footer>
+
+

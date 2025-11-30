@@ -1,0 +1,24 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+
+name: My Projects
+
+status: experimental
+
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Title
+      description: The title text
+      examples:
+        - Cool featured content
+    summary:
+      type: string
+      # @see https://json-schema.org/understanding-json-schema/reference/regular_expressions
+      pattern: '(.|\r?\n)*'
+      title: Summary
+      description: The optional summary text
+      examples:
+        - A short and engaging summary to highlight the featured content and get
+          your audience interested in learning more about it.

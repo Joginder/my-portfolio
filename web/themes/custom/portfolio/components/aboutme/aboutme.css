@@ -1,0 +1,3 @@
+/* about */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start;padding:60px 0}
+.about-grid p {line-height: 24px; color: var(--zinc2);}

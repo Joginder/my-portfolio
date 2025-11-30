@@ -1,0 +1,5 @@
+iconify_icons_provider.settings:
+  title: 'Iconify Icons Provider'
+  parent: system.admin_config_content
+  description: 'Iconify Icons Provider Settings.'
+  route_name: iconify_icons_provider.settings

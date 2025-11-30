@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://uxwing.com/drupal-icon/
+HostUrl=https://uxwing.com/wp-admin/admin-ajax.php?action=resize_image&size=512x512&file=drupal-icon.png&category_slug=brands-and-social-media

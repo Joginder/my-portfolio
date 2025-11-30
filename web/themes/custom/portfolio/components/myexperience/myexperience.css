@@ -1,0 +1,10 @@
+.section-dark{background:#080808;color: var(--bg);padding:60px 0}
+.experience-list{display:flex;flex-direction:column;gap:32px}
+.exp-card{padding:30px 24px;border-radius:12px; border: 1px solid var(--muted);}
+.exp-card:nth-child(even) {background: var(--gray); border: none;}
+.exp-card p {margin: 0; line-height: 24px; color: var(--zinc2);}
+.exp-fromto {display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 30px;}
+.exp-role {font-size: 24px; font-weight: 600; display: flex;
+  align-items: center;
+  gap: 18px;}
+.exp-role img {width: 50px;}

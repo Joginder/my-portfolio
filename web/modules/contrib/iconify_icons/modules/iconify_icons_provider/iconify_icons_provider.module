@@ -1,0 +1,178 @@
+<?php
+
+/**
+ * @file
+ * Drupal's integration with Iconify.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_icon_pack_alter().
+ *
+ * Alter the UI icon pack definitions.
+ *
+ * @throws \GuzzleHttp\Exception\GuzzleException
+ * @throws \JsonException
+ */
+function iconify_icons_provider_icon_pack_alter(array &$icon_pack_definitions): void {
+  $config = Drupal::configFactory()->get('iconify_icons_provider.settings');
+  $iconPackPluginManager = Drupal::service('plugin.manager.icon_pack');
+
+  $collections = $config->get('collections');
+
+  if (empty($collections)) {
+    return;
+  }
+
+  // Iterate through each collection and create a corresponding icon pack.
+  foreach ($collections as $collection) {
+    // Generate a machine name for the icon pack based on the collection name.
+    $icon_pack_name = strtolower(preg_replace('/[^a-z0-9_]/', '_', _iconify_icons_provider_generate_icon_pack_name($collection)));
+
+    // Check if the icon pack definition already exists, and skip if it does.
+    if (!isset($icon_pack_definitions[$icon_pack_name])) {
+      // Generate the icon pack definition based on the collection.
+      $icon_pack_definitions[$icon_pack_name] = _iconify_icons_provider_create_icon_pack_definition($collection);
+      $iconPackPluginManager->processDefinition($icon_pack_definitions[$icon_pack_name], $icon_pack_name);
+    }
+  }
+}
+
+/**
+ * Helper function to generate a machine name for an icon pack.
+ *
+ * @param string $collection_name
+ *   The original collection name in the format 'prefix-suffix'.
+ *
+ * @return string
+ *   The machine name in the format 'iconify_prefix_suffix'.
+ */
+function _iconify_icons_provider_generate_icon_pack_name(string $collection_name): string {
+  return strtolower(preg_replace('/[^a-z0-9_]/', '_', $collection_name));
+}
+
+/**
+ * Helper function to create an icon pack definition from a collection.
+ *
+ * @param string $collection
+ *   The icon collection name.
+ *
+ * @return array
+ *   The icon pack definition array.
+ */
+function _iconify_icons_provider_create_icon_pack_definition(string $collection): array {
+  // Build the icon pack definition based on the template structure.
+  return [
+    'enabled' => TRUE,
+    'label' => t('Iconify @collection', ['@collection' => $collection]),
+    'extractor' => 'iconify',
+    'config' => [
+      'collections' => [$collection],
+    ],
+    'settings' => [
+      'size' => [
+        'title' => 'Size',
+        'type' => 'integer',
+        'default' => 32,
+      ],
+      'color' => [
+        'title' => 'Color',
+        'type' => 'string',
+        'default' => '#000000',
+        'format' => 'color',
+      ],
+      'flip' => [
+        'title' => 'Flip',
+        'type' => 'string',
+        'enum' => [
+          'original',
+          'horizontal',
+          'vertical',
+          'horizontal,vertical',
+        ],
+      ],
+      'rotate' => [
+        'title' => 'Rotate',
+        'type' => 'string',
+        'enum' => [
+          '0deg',
+          '90deg',
+          '180deg',
+          '270deg',
+        ],
+      ],
+    ],
+    'template' => _iconify_icons_provider_build_icon_template(),
+    'provider' => 'iconify_icons_provider',
+    'id' => strtolower(preg_replace('/[^a-z0-9_]/', '_', _iconify_icons_provider_generate_icon_pack_name($collection))),
+  ];
+}
+
+/**
+ * Helper function to build the icon template.
+ *
+ * @return string
+ *   The icon template string.
+ */
+function _iconify_icons_provider_build_icon_template(): string {
+  // Return the icon template with placeholders for the parameters.
+  return <<<EOT
+    {% set params = {
+      width: size,
+      height: size,
+      rotate: rotate,
+      flip: flip,
+      color: color,
+    }|filter(v => v is not null) %}
+    <img src="{{ source }}?{{ params|url_encode }}" />
+  EOT;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Add a link to the Iconify Icons Packs configuration page if ui_icons_field
+ * is enabled.
+ */
+function iconify_icons_provider_form_field_config_edit_form_alter(&$form, FormStateInterface $form_state, $form_id): void {
+  if (!\Drupal::moduleHandler()->moduleExists('ui_icons_field')) {
+    return;
+  }
+
+  $settings = $form['settings'] ?? [];
+
+  if ($settings && array_key_exists('allowed_icon_pack', $settings)) {
+    $form['settings']['allowed_icon_pack']['#description'] .= _iconify_icons_provider_get_iconify_icons_pack_link();
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Add a link to the Iconify Icons Packs configuration page if ui_icons_text
+ * is enabled.
+ */
+function iconify_icons_provider_form_alter(&$form, FormStateInterface $form_state, $form_id): void {
+  if (!\Drupal::moduleHandler()->moduleExists('ui_icons_text')) {
+    return;
+  }
+
+  $icon_embed = $form['filters']['settings']['icon_embed'] ?? [];
+
+  if (isset($icon_embed['allowed_icon_pack'])) {
+    $form['filters']['settings']['icon_embed']['allowed_icon_pack']['#description'] .= _iconify_icons_provider_get_iconify_icons_pack_link();
+  }
+}
+
+/**
+ * Helper method to get the link to the Iconify Icons Packs configuration page.
+ *
+ * @return string
+ *   The link to the Iconify Icons Packs configuration page.
+ */
+function _iconify_icons_provider_get_iconify_icons_pack_link(): string {
+  $url = Url::fromRoute('iconify_icons_provider.settings', [], ['absolute' => TRUE])->toString();
+  return '<br /><a target="_blank" href="' . $url . '">' . t('Add Iconify Icons Packs') . '</a>';
+}

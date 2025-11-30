@@ -1,0 +1,16 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json'
+name: My Experience
+status: experimental
+description: A heading element
+props:
+  type: object
+  properties:
+    text:
+      type: string
+      title: Text
+      description: The heading text.
+      examples: ['A heading element']
+    element:
+      type: string
+      title: Element
+      description: The HTML element to use.

@@ -1,0 +1,3 @@
+portfolio.settings:
+  # Inherit all our settings from Olivero.
+  type: olivero.settings

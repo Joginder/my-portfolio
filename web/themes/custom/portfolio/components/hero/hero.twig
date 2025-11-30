@@ -1,0 +1,18 @@
+{# HERO #}
+<div class="container hero-grid">
+	<div class="hero-left">
+		<h1 class="hero-title">
+			{{ title|t }}
+    </h1>
+		<p class="lead">{{ summary|t }}</p>
+	
+		{# Social Connects #}
+		<div class="social-row">
+		{{ drupal_view('social_connects', 'block_1') }}
+		</div>
+	</div>
+
+	<div class="hero-right">
+    <img src="/themes/custom/portfolio/components/hero/images/illustration-hero.svg" alt="Me">
+	</div>
+</div>

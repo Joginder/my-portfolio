@@ -1,0 +1,9 @@
+/* projects */
+.projects-grid{display:grid;gap:100px}
+.projects-grid h3{font-size:32px; margin: 28px 0; color: var(--bg);}
+.project-item{display:flex;gap:100px;align-items:center}
+.project-item:nth-child(even){flex-direction:row-reverse}
+.project-thumb img{max-width:530px;object-fit:cover;border-radius:18px; height: 400px;}
+.project-meta p{color: var(--zinc2);}
+.project-meta a{ color: var(--bg);}
+.project-number {font-size: 48px; font-weight: 800;}

@@ -1,0 +1,7 @@
+iconify_icons_provider.settings:
+  path: '/admin/config/iconify_icons_provider/settings'
+  requirements:
+    _permission: 'configure custom configuration form'
+  defaults:
+    _form: \Drupal\iconify_icons_provider\Form\Settings
+    _title: 'Iconify Icons Provider settings'

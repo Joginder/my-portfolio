@@ -1,0 +1,200 @@
+<?php
+
+use Drupal\file\Entity\File;
+
+/**
+ * @file
+ * Contains theme hooks for Drupal CMS Olivero.
+ */
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function portfolio_theme_suggestions_form_alter(array &$suggestions, array $variables): void {
+  if (isset($variables['element']['#theme']) && is_array($variables['element']['#theme'])) {
+    foreach ($variables['element']['#theme'] as $theme) {
+      if (str_contains($theme, '_edit_')) {
+        $suggestions[] = 'form__' . str_replace('_edit_', '_', $theme);
+      }
+      $suggestions[] = 'form__' . $theme;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view__search().
+ */
+function portfolio_preprocess_views_view__search(array &$variables) {
+  $variables['#attached']['library'][] = 'portfolio/view-search';
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function portfolio_preprocess_node(array &$variables): void {
+  // Pass layout variable to template if content type is in full view
+  // mode. This is then used in the template to create a BEM style CSS class to
+  // control the layout.
+  if ($variables['view_mode'] === 'full') {
+    $variables['layout'] = 'content-narrow';
+  }
+}
+
+
+function portfolio_preprocess_page(array &$variables) {
+  if (isset($variables['node']) && $variables['node']->bundle() === 'portfolio') {
+    $node = $variables['node'];
+    $variables['hero_component'] = [
+      '#type' => 'component',
+      '#component' => 'portfolio:hero',
+      '#props' => [
+        'title' => $node->get('field_who_are_you')->value ?? 'No title',
+        'summary' => $node->get('field_more_brief')->value ?? 'No summary',
+      ],
+      '#cache' => [
+        'contexts' => $node->getCacheContexts(),
+        'tags' => $node->getCacheTags(),
+      ],
+    ];
+    
+    // for my skills section
+    $variables['myskills'] = [
+      '#type' => 'component',
+      '#component' => 'portfolio:myskills',
+      '#props' => (static function($node) {
+        $terms = [];
+        if ($node->hasField('field_my_skills') && !$node->get('field_my_skills')->isEmpty()) {
+          foreach ($node->get('field_my_skills')->referencedEntities() as $term) {
+            
+            $desc_value = '';
+            $desc_format = 'full_html';
+            if ($term->hasField('description') && !$term->get('description')->isEmpty()) {
+              $desc_value = $term->get('description')->value;
+              $desc_format = $term->get('description')->format ?? $desc_format;
+            }
+
+            $terms[] = [
+              '#type' => 'container',
+              'description' => [
+              '#type' => 'processed_text',
+              '#text' => $desc_value,
+              '#format' => $desc_format,
+              ],
+            ];
+          }
+        }
+        return [
+          'skills' => $terms ?: [['#markup' => 'No skills']],
+        ];
+      })($node),
+      
+      '#cache' => [
+        'contexts' => $node->getCacheContexts(),
+        'tags' => $node->getCacheTags(),
+      ],
+    ];
+
+    // for my experience section
+    $variables['myexperience'] = [
+      '#type' => 'component',
+      '#component' => 'portfolio:myexperience',
+      '#props' => [
+        'summary' => $node->get('field_my_experience')->value ?? 'No summary',
+      ],
+      '#cache' => [
+        'contexts' => $node->getCacheContexts(),
+        'tags' => $node->getCacheTags(),
+      ],
+    ];
+
+    // for about me section
+    $variables['aboutme'] = [
+      '#type' => 'component',
+      '#component' => 'portfolio:aboutme',
+      '#props' => [
+        'summary' => $node->get('field_about_me')->value ?? 'No summary',
+      ],
+      '#cache' => [
+        'contexts' => $node->getCacheContexts(),
+        'tags' => $node->getCacheTags(),
+      ],
+    ];
+
+    // for about me section
+    $variables['myprojects'] = [
+      '#type' => 'component',
+      '#component' => 'portfolio:myprojects',
+      '#props' => [
+        'summary' => $node->get('field_my_projects')->value ?? 'No summary',
+      ],
+      '#cache' => [
+        'contexts' => $node->getCacheContexts(),
+        'tags' => $node->getCacheTags(),
+      ],
+    ];
+  }
+}
+
+function portfolio_preprocess(&$vars) {
+  $config = \Drupal::config('system.site');
+  $vars['site_name'] = $config->get('name');
+  $vars['site_slogan'] = $config->get('slogan');
+
+  $logo = \Drupal::theme()->getActiveTheme()->getLogo();
+  $vars['site_logo_url'] = $logo
+    ? \Drupal::service('file_url_generator')->generateAbsoluteString($logo)
+    : NULL;
+}
+
+
+/**
+ * Implements hook_preprocess_node__event__full().
+ */
+function portfolio_preprocess_node__event__full(array &$variables): void {
+  $variables['#attached']['library'][] = 'portfolio/event-full';
+}
+
+/**
+ * Implements hook_preprocess_node__case_study__full().
+ */
+function portfolio_preprocess_node__case_study__full(array &$variables): void {
+  $variables['#attached']['library'][] = 'portfolio/case-study-full';
+}
+
+/**
+ * Implements hook_preprocess_node__project__full().
+ */
+function portfolio_preprocess_node__project__full(array &$variables): void {
+  $variables['#attached']['library'][] = 'portfolio/project-full';
+}
+
+/**
+ * Implements hook_preprocess_node__person__full().
+ */
+function portfolio_preprocess_node__person__full(array &$variables): void {
+  $variables['#attached']['library'][] = 'portfolio/person-full';
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function portfolio_preprocess_block(&$variables): void {
+  $plugin_id = $variables['plugin_id'];
+  // Allow particular blocks to extend the width of the column.
+  $wide_content = [
+    'field_tags',
+    'field_featured_image',
+    'views_block',
+  ];
+  // Very loose string contains substring in array type check.
+  // If too loose, we can make the above array more specific.
+  if (str_replace($wide_content, '', strtolower($plugin_id)) !== strtolower($plugin_id)) {
+    $variables['attributes']['class'][] = 'wide-content';
+  }
+
+  // Visually hide the page title on home.
+  $is_front = \Drupal::service('path.matcher')->isFrontPage();
+  if ($is_front && $plugin_id === 'page_title_block') {
+    $variables['attributes']['class'][] = 'visually-hidden';
+  }
+}
