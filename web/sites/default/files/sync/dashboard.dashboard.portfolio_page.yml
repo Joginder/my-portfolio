@@ -1,0 +1,36 @@
+uuid: 2ae1f913-4f34-4e90-9bce-6ad13318be48
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - layout_builder
+    - layout_discovery
+    - system
+id: portfolio_page
+label: 'Portfolio page'
+description: 'This page is for the home page.'
+layout:
+  -
+    layout_id: layout_onecol
+    layout_settings:
+      label: 'Home page'
+      context_mapping: {  }
+    components:
+      5687f036-1fce-4120-ba1e-9398afef7d69:
+        uuid: 5687f036-1fce-4120-ba1e-9398afef7d69
+        region: content
+        configuration:
+          id: 'system_menu_block:main'
+          label: 'Main navigation'
+          label_display: visible
+          provider: system
+          context_mapping: {  }
+          level: 1
+          depth: null
+          expand_all_items: false
+        weight: 0
+        additional: {  }
+    third_party_settings: {  }
+weight: 1

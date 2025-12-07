@@ -1,0 +1,22 @@
+uuid: ed456cc2-38ea-4381-958f-19faa694aafd
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - portfolio
+_core:
+  default_config_hash: RTAK4_gs17niKe-_6EfM0ev9b3JOXpsuzhRzYKwTsF4
+id: portfolio_powered
+theme: portfolio
+region: footer_bottom
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,65 @@
+uuid: 492daf08-4e07-4083-889a-533c0c94f96e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.my_projects.field_numbercount
+    - field.field.paragraph.my_projects.field_project_description
+    - field.field.paragraph.my_projects.field_project_link
+    - field.field.paragraph.my_projects.field_project_screenshot
+    - field.field.paragraph.my_projects.field_project_title
+    - paragraphs.paragraphs_type.my_projects
+  module:
+    - link
+    - text
+id: paragraph.my_projects.default
+targetEntityType: paragraph
+bundle: my_projects
+mode: default
+content:
+  field_numbercount:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_project_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_project_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_project_screenshot:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_project_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

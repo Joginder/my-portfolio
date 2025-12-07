@@ -1,0 +1,22 @@
+uuid: d006030e-846f-48cb-aa83-82797590e954
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_project_description
+    - paragraphs.paragraphs_type.my_projects
+  module:
+    - text
+id: paragraph.my_projects.field_project_description
+field_name: field_project_description
+entity_type: paragraph
+bundle: my_projects
+label: 'Project description'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

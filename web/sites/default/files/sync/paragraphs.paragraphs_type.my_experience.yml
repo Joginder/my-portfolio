@@ -1,0 +1,10 @@
+uuid: df68774b-0e32-4fd7-9fb6-ca47f514008c
+langcode: en
+status: true
+dependencies: {  }
+id: my_experience
+label: 'My Experience'
+icon_uuid: null
+icon_default: null
+description: 'Add your work experience.'
+behavior_plugins: {  }

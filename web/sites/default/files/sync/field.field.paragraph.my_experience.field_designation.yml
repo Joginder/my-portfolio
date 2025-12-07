@@ -1,0 +1,19 @@
+uuid: 6d641449-0d75-4a73-a46d-d09cc1c0b50d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_designation
+    - paragraphs.paragraphs_type.my_experience
+id: paragraph.my_experience.field_designation
+field_name: field_designation
+entity_type: paragraph
+bundle: my_experience
+label: Designation
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,23 @@
+uuid: 23a2752a-6cab-4e53-8e4c-33be2443a604
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_facebook
+    - paragraphs.paragraphs_type.social_connects
+  module:
+    - link
+id: paragraph.social_connects.field_facebook
+field_name: field_facebook
+entity_type: paragraph
+bundle: social_connects
+label: Facebook
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 16
+field_type: link

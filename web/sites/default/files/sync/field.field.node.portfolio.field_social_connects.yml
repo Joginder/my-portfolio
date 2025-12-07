@@ -1,0 +1,31 @@
+uuid: 2a3e9f6b-1057-48a6-8a21-618e0f450efd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_social_connects
+    - node.type.portfolio
+    - paragraphs.paragraphs_type.social_connects
+  module:
+    - entity_reference_revisions
+id: node.portfolio.field_social_connects
+field_name: field_social_connects
+entity_type: node
+bundle: portfolio
+label: 'Social Connects'
+description: 'Add any 5 profile links.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      social_connects: social_connects
+    negate: 0
+    target_bundles_drag_drop:
+      social_connects:
+        weight: 2
+        enabled: true
+field_type: entity_reference_revisions

@@ -1,0 +1,22 @@
+uuid: 94b27c12-e18f-4385-bf8b-bd34b028e367
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - portfolio
+_core:
+  default_config_hash: 1cSFBYYKA1GAyCz4XygjlAWATku7OrJp5hku7HItWUs
+id: portfolio_content
+theme: portfolio
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,23 @@
+uuid: 53cc0d63-c34c-4746-976e-0e8e311d653d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_numbercount
+    - paragraphs.paragraphs_type.my_projects
+id: paragraph.my_projects.field_numbercount
+field_name: field_numbercount
+entity_type: paragraph
+bundle: my_projects
+label: Numbercount
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: '0'
+  suffix: ''
+field_type: integer

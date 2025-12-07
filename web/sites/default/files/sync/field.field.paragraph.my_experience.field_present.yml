@@ -1,0 +1,21 @@
+uuid: f1434270-b1ec-45ef-b726-8c0f719ef481
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_present
+    - paragraphs.paragraphs_type.my_experience
+id: paragraph.my_experience.field_present
+field_name: field_present
+entity_type: paragraph
+bundle: my_experience
+label: Present
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

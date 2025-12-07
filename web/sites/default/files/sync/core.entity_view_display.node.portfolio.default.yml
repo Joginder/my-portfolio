@@ -1,0 +1,94 @@
+uuid: 5e627816-9fd3-44d1-9b5f-7ed974db066b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.portfolio.field_about_me
+    - field.field.node.portfolio.field_more_brief
+    - field.field.node.portfolio.field_my_experience
+    - field.field.node.portfolio.field_my_projects
+    - field.field.node.portfolio.field_my_skills
+    - field.field.node.portfolio.field_resume
+    - field.field.node.portfolio.field_social_connects
+    - field.field.node.portfolio.field_who_are_you
+    - node.type.portfolio
+  module:
+    - entity_reference_revisions
+    - file
+    - text
+    - user
+id: node.portfolio.default
+targetEntityType: node
+bundle: portfolio
+mode: default
+content:
+  field_about_me:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_more_brief:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_my_experience:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_my_projects:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  field_my_skills:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_resume:
+    type: file_default
+    label: hidden
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_social_connects:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_who_are_you:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

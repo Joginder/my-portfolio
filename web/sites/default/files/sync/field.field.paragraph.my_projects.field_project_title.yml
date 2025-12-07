@@ -1,0 +1,19 @@
+uuid: 5b99f18a-2a1a-4190-a13e-d5ec8c100781
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_project_title
+    - paragraphs.paragraphs_type.my_projects
+id: paragraph.my_projects.field_project_title
+field_name: field_project_title
+entity_type: paragraph
+bundle: my_projects
+label: 'Project Title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

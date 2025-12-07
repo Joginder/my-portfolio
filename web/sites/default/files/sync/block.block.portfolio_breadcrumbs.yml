@@ -1,0 +1,22 @@
+uuid: f3e18241-33ed-4716-8be6-486b27bb5cd6
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - portfolio
+_core:
+  default_config_hash: RblpmVmSVksY5z6MbYbt2NjhCME2do2eoqsmQQ0e6JY
+id: portfolio_breadcrumbs
+theme: portfolio
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

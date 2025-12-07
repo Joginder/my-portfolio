@@ -1,0 +1,21 @@
+uuid: 75ab9287-4686-4959-8919-c9ae31170afb
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.full
+  module:
+    - ckeditor5
+format: full
+editor: ckeditor5
+settings:
+  toolbar:
+    items:
+      - sourceEditing
+  plugins:
+    ckeditor5_sourceEditing:
+      allowed_tags:
+        - '<div class>'
+        - '<i class>'
+image_upload:
+  status: false

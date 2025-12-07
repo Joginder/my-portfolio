@@ -1,0 +1,22 @@
+uuid: c6f1b27a-a5a2-4c2c-a126-98868f82a189
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_about_me
+    - node.type.portfolio
+  module:
+    - text
+id: node.portfolio.field_about_me
+field_name: field_about_me
+entity_type: node
+bundle: portfolio
+label: 'About Me'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

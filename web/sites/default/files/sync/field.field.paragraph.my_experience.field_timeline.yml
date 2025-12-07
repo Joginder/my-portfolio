@@ -1,0 +1,21 @@
+uuid: c1f2e709-21d6-45e9-a4c5-bee588cf5d15
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_timeline
+    - paragraphs.paragraphs_type.my_experience
+  module:
+    - datetime
+id: paragraph.my_experience.field_timeline
+field_name: field_timeline
+entity_type: paragraph
+bundle: my_experience
+label: 'Start date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

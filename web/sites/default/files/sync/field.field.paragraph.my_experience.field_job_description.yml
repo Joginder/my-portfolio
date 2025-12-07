@@ -1,0 +1,22 @@
+uuid: 3707f2c8-cf6f-4f4f-878a-43b6dcf58ea2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_job_description
+    - paragraphs.paragraphs_type.my_experience
+  module:
+    - text
+id: paragraph.my_experience.field_job_description
+field_name: field_job_description
+entity_type: paragraph
+bundle: my_experience
+label: 'Job Description'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

@@ -6,7 +6,7 @@
 }
 
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+html,body{height:100%;margin:0;color:var(--text);background:var(--bg) !important;-webkit-font-smoothing:antialiased}
 p {line-height: 24px;}
 .container{max-width:var(--container);margin:0 auto;padding:0 20px}
 
@@ -33,19 +33,23 @@ body:not(.is-always-mobile-nav) .primary-nav__menu-link-inner::after {border-top
 .contact-form .social-row>p br {display: none;}
 .contact-form .social-row a {margin-right: 0;}
 
-/* responsive */
-@media (max-width:1000px){
-  .hero-grid{grid-template-columns:1fr}
-  .skills-grid{grid-template-columns:repeat(3,1fr)}
-  .projects-grid{grid-template-columns:1fr}
-  .about-grid{grid-template-columns:1fr}
-  .testi-grid{grid-template-columns:1fr}
-  .primary-nav .menu{display:none}
-  .nav-toggle{display:block}
-  .primary-nav.open .menu{display:flex;flex-direction:column;background:var(--bg);padding:10px;border-radius:8px;position:absolute;top:72px;right:20px}
-}
-
 /* simple inview animation */
 .section, .skill-card, .project-item, .testi-card, .exp-card {opacity:0; transform:translateY(20px); transition:all .6s ease}
 .inview {opacity:1; transform:none}
 /* Utility classes */
+
+/* Responsive code */
+@media (max-width: 600px) {
+  .header-inner {
+    /* flex-direction: column; */
+  }
+  .container {
+    padding: 15px 10px !important;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-inner {
+    flex-direction: column;
+  }
+}

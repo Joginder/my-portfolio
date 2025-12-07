@@ -1,0 +1,10 @@
+uuid: fa58b24c-87fd-4575-9dbd-3c6e885d2763
+langcode: en
+status: true
+dependencies: {  }
+id: social_connects
+label: 'Social connects'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

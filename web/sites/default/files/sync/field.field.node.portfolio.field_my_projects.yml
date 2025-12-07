@@ -1,0 +1,37 @@
+uuid: d7cf21b4-40b4-40da-bfc8-6b94bbaa6225
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_my_projects
+    - node.type.portfolio
+    - paragraphs.paragraphs_type.my_projects
+  module:
+    - entity_reference_revisions
+id: node.portfolio.field_my_projects
+field_name: field_my_projects
+entity_type: node
+bundle: portfolio
+label: 'My projects'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      my_projects: my_projects
+    negate: 0
+    target_bundles_drag_drop:
+      my_experience:
+        weight: 5
+        enabled: false
+      my_projects:
+        weight: 4
+        enabled: true
+      social_connects:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

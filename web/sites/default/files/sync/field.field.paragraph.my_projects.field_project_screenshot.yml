@@ -1,0 +1,29 @@
+uuid: c140cc09-85a8-4386-ae80-dbaf00b14cee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_project_screenshot
+    - media.type.image
+    - paragraphs.paragraphs_type.my_projects
+id: paragraph.my_projects.field_project_screenshot
+field_name: field_project_screenshot
+entity_type: paragraph
+bundle: my_projects
+label: 'Project screenshot'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

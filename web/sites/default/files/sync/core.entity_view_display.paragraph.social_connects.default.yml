@@ -1,0 +1,105 @@
+uuid: 916f3097-3087-4dd7-8d28-c94c2a84c7fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.social_connects.field_discord
+    - field.field.paragraph.social_connects.field_drupal
+    - field.field.paragraph.social_connects.field_facebook
+    - field.field.paragraph.social_connects.field_github
+    - field.field.paragraph.social_connects.field_linkedin
+    - field.field.paragraph.social_connects.field_twitter_x
+    - field.field.paragraph.social_connects.field_upwork
+    - paragraphs.paragraphs_type.social_connects
+  module:
+    - link
+id: paragraph.social_connects.default
+targetEntityType: paragraph
+bundle: social_connects
+mode: default
+content:
+  field_discord:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_drupal:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_facebook:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_github:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_linkedin:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_twitter_x:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_upwork:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 6
+    region: content
+hidden: {  }

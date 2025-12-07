@@ -1,0 +1,22 @@
+uuid: 6868e8aa-6e92-47b6-b496-ca20b900e2e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_who_are_you
+    - node.type.portfolio
+  module:
+    - text
+id: node.portfolio.field_who_are_you
+field_name: field_who_are_you
+entity_type: node
+bundle: portfolio
+label: 'Who are you'
+description: 'Add about you short'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text
